@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>SUMDA</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">  
+    <script src="assets/config.js"></script>
+
+    <script src="js/db-display.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/view-controller.js"></script>
+    <script src="js/trolls-regist.js"></script>
+</head>
+
+<body>
+<header class="main-header">
+    <div class="header-container">
+        <div class="header-top">
+            <img src="assets/logo-01.png" alt="logo" class="logo-image">
+            
+            <div class="header-right-group">
+                <div class="status-badge">● Online</div>
+                <button class="logout-button" onclick="logout()">ログアウト</button>
+            </div>
+        </div>
+
+        <nav class="header-tabs">
+            <div class="tab-item active" data-page="pages/dashboard.html">
+                <span class="icon">ダッシュボード</span>
+            </div>
+            <div class="tab-item" data-page="pages/calendar.html">
+                <span class="icon">カレンダー</span>
+            </div>
+            <div class="tab-item" data-page="pages/regist.html">
+                <span class="icon">登録/編集</span>
+            </div>
+            <div class="tab-item" data-page="pages/view.html">
+                <span class="icon">参照</span>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="home-container">
+    <h2 id="welcome-message">読み込み中...</h2>
+    <p class="subtitle">SU本部メインシステムへログインしました。ご希望の作業を開始してください。</p>
+
+    <main id="main-content"></main>
+
+    <footer class="main-footer">
+    <div class="footer-container">
+        <p>© 2026 Server Union - SUMDA System</p>
+        <p style="font-size: 11px; color: #d73a49; margin-top: 5px;">⚠️ 注意：本システムは機密情報を含みます。ソースコードやデータの流出は責任を問われるおそれがあります。</p>
+    </div>
+</footer>
+
+</div>
+
+<!-- 詳細表示用モーダル -->
+<div id="detail-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modal-title">詳細情報</h3>
+            <!-- xボタンを削除 -->
+        </div>
+        <div class="modal-body" id="modal-body">
+            <!-- ここに詳細データが動的に挿入される -->
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn-close-modal" onclick="DBDisplay.closeModal()">戻る</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/auth.js"></script>
+<script src="js/loader.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/forms.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/main-init.js"></script>
+</body>
+</html>

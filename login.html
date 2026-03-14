@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUMA - システムログイン</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="assets/config.js"></script>
+</head>
+<body class="login-page">
+    <main class="login-wrapper">
+        <div class="login-logo-area">
+            <img src="assets/logo.png" alt="SUMA Logo" class="center-logo">
+        </div>
+
+        <div class="login-box">
+            <h2>サインイン</h2>
+            <div class="login-form">
+                <input type="text" id="username" placeholder="ユーザー名" required>
+                <input type="password" id="password" placeholder="パスワード" required>
+                <button onclick="handleLogin()">次へ</button>
+            </div>
+
+            <div class="login-footer">
+                <div class="divider">または</div>
+                <a href="pages/user-register.html" class="btn-create-account">新しいアカウントを作成</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function handleLogin() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            if (!user || !pass) {
+                alert("ユーザー名とパスワードを入力してください");
+                return;
+            }
+
+            try {
+                const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pass })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    localStorage.setItem('loginUser', result.user.username);
+                    // バックエンドが isAdmin (camelCase) で送ってくるため修正
+                    localStorage.setItem('isAdmin', result.user.isAdmin ? '1' : '0');
+                    window.location.href = './home.html';
+                } else {
+                    alert("ログイン失敗: " + result.message);
+                }
+            } catch (err) {
+                console.error("通信エラー:", err);
+                alert("サーバーに接続できませんでした。");
+            }
+        }
+    </script>
+</body>
+</html>

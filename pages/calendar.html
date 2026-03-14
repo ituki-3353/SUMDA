@@ -1,0 +1,96 @@
+<div class="calendar-container">
+    <div class="calendar-header">
+        <div class="header-left">
+            <h2>📅 スケジュール管理</h2>
+            <div class="view-switcher">
+                <button class="btn-switch active" id="view-list" onclick="switchView('list')">リスト</button>
+                <button class="btn-switch" id="view-grid" onclick="switchView('grid')">カレンダー</button>
+            </div>
+    
+    <div class="calendar-body">
+        <div id="view-list-container">
+            <div class="table-wrapper">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">日付</th>
+                            <th style="width: 20%;">ユーザー</th>
+                            <th style="width: 20%;">対応可否</th>
+                            <th style="width: 30%;">補足内容</th>
+                            <th style="width: 10%;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-list">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="view-grid-container" style="display: none;">
+            <div class="grid-wrapper">
+                <div class="calendar-month-label">2026年 3月</div>
+                <div class="calendar-week-header">
+                    <div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div>
+                </div>
+                <div class="calendar-days-grid" id="calendar-days">
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* 必須：グリッドを正しく並べるためのスタイル */
+    .calendar-days-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1px;
+        background: #e1e4e8;
+        border: 1px solid #e1e4e8;
+    }
+    .day-cell {
+        background: white;
+        min-height: 80px;
+        padding: 5px;
+    }
+    .calendar-week-header {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        background: #f6f8fa;
+        font-weight: bold;
+        padding: 10px 0;
+    }
+    .view-switcher { margin-top: 10px; background: #eee; padding: 4px; border-radius: 8px; width: fit-content; }
+    .btn-switch { border: none; padding: 5px 15px; border-radius: 6px; cursor: pointer; background: transparent; }
+    .btn-switch.active { background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: bold; }
+
+    /* リスト表示を包むコンテナのスタイル */
+#view-list-container {
+    width: 100%;
+    overflow-x: auto; /* スマホなどで見た時も横にスクロールできるようにする */
+}
+
+/* テーブル自体の崩れ防止 */
+.table-wrapper {
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-top: 10px;
+}
+
+.schedule-table {
+    width: 100%; /* これが重要：親要素の幅100%に広げる */
+    border-collapse: collapse;
+    table-layout: fixed; /* 列の幅を固定してガタつきを防ぐ */
+}
+
+.schedule-table th, 
+.schedule-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    word-wrap: break-word; /* 長い文字が来ても枠を壊さない */
+}
+</style>
