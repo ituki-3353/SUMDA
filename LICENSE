@@ -37,3 +37,52 @@ Copyright © 2026 ituki3353 / Server Union
 6.不明点に関して
 本ライセンスに関する不明点は以下の連絡先またはgithubより連絡。
 ituki1089@gmail.com
+
+
+
+English
+
+SUMDA - Server Union Mainframe and Database Administer System
+License (Version 0.2)
+Copyright © 2026 ituki3353 / Server Union
+
+0. Definitions
+The following terms are defined in this license:
+
+- "Server Union" (Abbreviation: SU): Refers to the server union within the Discord Japan community.
+
+- "SAUMDA" (Abbreviation: SUMDA): The name of this software.
+
+- "SUMDA Account": Refers to user information (personal information including the password required for system login) registered in the database (hereinafter "DB").
+
+- "User": An operating member within the SU organization, or an SU member who can access the software information.
+
+- "Administrator": A person with administrative privileges on the DB, or a person granted administrative privileges through a SUMDA account.
+
+- "DB": Refers to the database.
+
+1. Permission Conditions
+This software is permitted for use only under the following conditions:
+
+- Usable only within the SU organization.
+
+2. Usage Restrictions
+The following persons are not permitted to use this software under any circumstances. - Discord users outside the SU organization.
+- Non-Discord users.
+- Individuals without DB operation privileges.
+
+If any of the above restricted individuals use this software, it will be considered a data breach and they will be held legally responsible.
+
+3. Prohibition of Redistribution and Modification
+Redistribution, modification, and creation of derivative works of this software are strictly prohibited.
+
+4. Disclaimer
+This software is provided "as is" without any express or implied warranties (such as merchantability or fitness for a particular purpose).
+The copyright holder assumes no responsibility for any damages arising from the use of this software.
+
+5. Termination
+In the event of a violation of this license, the license will automatically terminate.
+
+6. Questions
+For any questions regarding this license, please contact the following address or GitHub:
+ituki1089@gmail.com
