@@ -53,17 +53,16 @@ const DBDisplay = {
             }
 
             // 操作ボタンの生成
-            let ops = '';
+            let ops = `<td class="ops-cell">
+                <button type="button" class="btn-view" onclick="DBDisplay.viewRecord(${index})">参照</button>`;
+            
             if (isAdmin) {
-                ops = `<td class="ops-cell">
+                ops += `
                     <button type="button" class="btn-edit" onclick="DBDisplay.editRecord(${index})">編集</button>
-                    <button type="button" class="btn-delete-record" onclick="DBDisplay.deleteRecord(${index})">削除</button>
-                </td>`;
-            } else {
-                ops = `<td class="ops-cell">
-                    <button type="button" class="btn-view" onclick="DBDisplay.viewRecord(${index})">参照</button>
-                </td>`;
+                    <button type="button" class="btn-delete-record" onclick="DBDisplay.deleteRecord(${index})">削除</button>`;
             }
+            
+            ops += `</td>`;
 
             return `<tr>${cells}${ops}</tr>`;
         }).join('');
@@ -196,7 +195,10 @@ const DBDisplay = {
         }
 
         try {
-            const res = await fetch(`${window.APP_CONFIG.API_BASE_URL}${apiPath}/${recordId}`, {
+            const url = `${window.APP_CONFIG.API_BASE_URL}${apiPath}/${recordId}`;
+            console.log('Attempting DELETE:', url);
+            
+            const res = await fetch(url, {
                 method: 'DELETE'
             });
 
@@ -211,12 +213,21 @@ const DBDisplay = {
                     initDatabaseView(dataType);
                 }
             } else {
-                const err = await res.json();
-                alert('❌ 削除失敗: ' + (err.message || res.statusText));
+                let errorMsg = `Error ${res.status}: ${res.statusText}`;
+                try {
+                    const contentType = res.headers.get("content-type");
+                    if (contentType && contentType.includes("application/json")) {
+                        const err = await res.json();
+                        errorMsg = err.message || errorMsg;
+                    }
+                } catch (jsonErr) {
+                    console.error('Error parsing error JSON:', jsonErr);
+                }
+                alert('❌ 削除失敗: ' + errorMsg);
             }
         } catch (e) {
             console.error('Delete Error:', e);
-            alert('❌ 削除中にエラーが発生しました');
+            alert('❌ 削除中に通信エラーが発生しました');
         }
     },
 

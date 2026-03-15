@@ -1,88 +1,75 @@
-SUMDA - Server Union Mainframe and Database Administer System
-ライセンス (Version 0.2)
+SUMDA - Server Union Mainframe and Database Administration System
+License (Version 0.3)
 Copyright © 2026 ituki3353 / Server Union
+
+=== 日本語版 ===
 
 0. 定義
 本ライセンスにおける用語の定義は以下の通りである。
 
 - "Server Union" (略称: SU): Discord日本コミュニティにおけるサーバー連合を指す。
-- "SAUMDA" (略称: SUMDA): 本ソフトウェアの呼称。
+- "SUMDA": 本ソフトウェアの呼称（旧称: SAUMDA）。
 - "SUMDAアカウント": データベース（以下「DB」）に登録された利用者の情報（システムログインに必要なパスワードを含む個人情報）を指す。
 - "利用者": SU組織内の運営メンバー、またはソフトウェアの情報を参照可能なSUメンバー。
 - "管理者": DB上での管理権限を持つ者、またはSUMDAアカウントにて管理権限が付与された者。
 - "DB": データベースを指す。
 
 1. 許可条件
-本ソフトウェアは、以下の条件でのみ使用を許可される。
-- SU組織内でのみ使用可能。
+本ソフトウェアは、**SU組織内でのみ使用可能**。これ以外の使用は一切禁止。
 
 2. 使用制限
-以下の者は本ソフトウェアの使用を一切認めない。
-- SU組織外のDiscordユーザー。
-- 非Discordユーザー。
-- DB操作の権限を持たない者。
+以下の者は本ソフトウェアの使用を一切認めない：
+- SU組織外のDiscordユーザー
+- 非Discordユーザー  
+- DB操作権限を持たない者
 
-上記制限対象者が本ソフトウェアを使用した場合、情報漏洩とみなされ、法的責任を負う。
+上記者が使用した場合、**情報漏洩とみなし法的責任を追及**。
 
-3. 再配布・改変の禁止
-本ソフトウェアの再配布、改変、派生作品の作成は一切禁止する。
+3. 再配布・改変の完全禁止
+本ソフトウェアの再配布、改変、派生作品作成は**一切禁止**。
 
 4. 免責事項
-本ソフトウェアは「現状のまま」提供され、明示的または暗黙の保証（商品性、特定目的への適合性など）を一切行わない。
-本ソフトウェアの使用および利用により生じた損害について、著作権者は一切の責任を負わない。
+本ソフトウェアは「現状のまま」提供。**一切の保証なし**。
+使用による損害について著作権者は**責任を負わない**。
 
-5. 終了
-本ライセンス違反があった場合、自動的にライセンスは終了する。
+5. 自動終了
+本ライセンス違反時は**即時自動終了**。
 
-6.不明点に関して
-本ライセンスに関する不明点は以下の連絡先またはgithubより連絡。
-ituki1089@gmail.com
+6. 連絡先
+不明点は [ituki1089@gmail.com](mailto:ituki1089@gmail.com) または GitHub Issues まで。
 
+---
 
-
-English
-
-SUMDA - Server Union Mainframe and Database Administer System
-License (Version 0.2)
-Copyright © 2026 ituki3353 / Server Union
+=== English Version ===
 
 0. Definitions
-The following terms are defined in this license:
-
-- "Server Union" (Abbreviation: SU): Refers to the server union within the Discord Japan community.
-
-- "SAUMDA" (Abbreviation: SUMDA): The name of this software.
-
-- "SUMDA Account": Refers to user information (personal information including the password required for system login) registered in the database (hereinafter "DB").
-
-- "User": An operating member within the SU organization, or an SU member who can access the software information.
-
-- "Administrator": A person with administrative privileges on the DB, or a person granted administrative privileges through a SUMDA account.
-
-- "DB": Refers to the database.
+- "Server Union" (abbr: SU): Server union within Discord Japan community
+- "SUMDA": This software (formerly SAUMDA)
+- "SUMDA Account": User info registered in database ("DB") including login password
+- "User": SU organization operating member or SU member with software access
+- "Administrator": DB admin or SUMDA account with admin privileges
+- "DB": Database
 
 1. Permission Conditions
-This software is permitted for use only under the following conditions:
+**SU organization use ONLY**. All other use strictly prohibited.
 
-- Usable only within the SU organization.
+2. Usage Restrictions  
+Following persons **PROHIBITED** from using this software:
+- Discord users outside SU organization
+- Non-Discord users
+- Those without DB operation privileges
 
-2. Usage Restrictions
-The following persons are not permitted to use this software under any circumstances. - Discord users outside the SU organization.
-- Non-Discord users.
-- Individuals without DB operation privileges.
+**Unauthorized use = data breach. Legal action will be taken.**
 
-If any of the above restricted individuals use this software, it will be considered a data breach and they will be held legally responsible.
+3. No Redistribution/Modification
+**Redistribution, modification, derivative works STRICTLY PROHIBITED.**
 
-3. Prohibition of Redistribution and Modification
-Redistribution, modification, and creation of derivative works of this software are strictly prohibited.
+4. Disclaimer  
+Software provided "AS IS" **WITHOUT ANY WARRANTY**.
+Copyright holder **NOT responsible** for damages.
 
-4. Disclaimer
-This software is provided "as is" without any express or implied warranties (such as merchantability or fitness for a particular purpose).
-The copyright holder assumes no responsibility for any damages arising from the use of this software.
+5. Termination  
+License **AUTO-TERMINATES** upon violation.
 
-5. Termination
-In the event of a violation of this license, the license will automatically terminate.
-
-6. Questions
-For any questions regarding this license, please contact the following address or GitHub:
-ituki1089@gmail.com
+6. Contact  
+Questions: [ituki1089@gmail.com](mailto:ituki1089@gmail.com) or GitHub Issues
