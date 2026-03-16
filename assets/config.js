@@ -1,3 +1,7 @@
+/*
+ * Version0.4
+ * SUMDAシステム
+ */
 // config.js
 const CONFIG = {
     // 開発中は localhost、サーバーで動かす時はサーバーのIPに書き換える

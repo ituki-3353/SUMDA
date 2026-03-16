@@ -1,3 +1,7 @@
+/*
+ * Version0.4
+ * SUMDAシステム
+ */
 /**
  * SUMDA - DB Display Controller (db-display.js)
  * データの描画とテーブル操作を担当
@@ -174,7 +178,8 @@ const DBDisplay = {
         const item = this.currentData[index];
         if (!item) return;
 
-        if (!confirm('このレコードを削除してもよろしいですか？\nこの操作は取り消せません。')) {
+        if (!confirm('このレコードを削除してもよろしいですか？
+この操作は取り消せません。')) {
             return;
         }
 

@@ -1,3 +1,7 @@
+/*
+ * Version0.4
+ * SUMDAシステム
+ */
 // 種別選択のフロート（モーダル）を表示する
 function showTypeSelection() {
     document.getElementById('type-selection-modal').style.display = 'flex';

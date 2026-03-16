@@ -1,3 +1,7 @@
+/*
+ * Version0.4
+ * SUMDAシステム
+ */
 /**
  * SUMDA - Announcements Controller
  */
@@ -141,7 +145,8 @@ const Announcements = {
                     </div>
                     <div class="info-body">
                         <h4 class="info-title">${this.escapeHtml(item.title)}</h4>
-                        <p>${this.escapeHtml(item.content).replace(/\n/g, '<br>')}</p>
+                        <p>${this.escapeHtml(item.content).replace(/
+/g, '<br>')}</p>
                     </div>
                 </div>
             `;

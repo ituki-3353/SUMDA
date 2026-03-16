@@ -1,3 +1,7 @@
+/*
+ * Version0.4
+ * SUMDAシステム
+ */
 /**
  * SUMDA - Forms Controller (Integrated Registration)
  */

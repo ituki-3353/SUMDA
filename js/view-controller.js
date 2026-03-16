@@ -1,3 +1,7 @@
+/*
+ * Version0.4
+ * SUMDAシステム
+ */
 /**
  * SUMDA - View Controller
  * view.html のメニュー制御と各ページコンポーネントの読み込みを担当

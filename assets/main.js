@@ -1,3 +1,7 @@
+/*
+ * Version0.4
+ * SUMDAシステム
+ */
 /**
  * SUDMA System - Main Controller (Stable & High Performance Version)
  */
