@@ -1,0 +1,823 @@
+/* =========================================
+   1. 全体共通設定 (Global)
+   ========================================= */
+:root {
+    --suma-accent: #3cb7e7;         /* SUMAアクセント（GitHubオレンジ） */
+    --suma-accent-hover: #3cb7e7;
+    --text-primary: #1a1a1a;
+    --text-secondary: #57606a;
+    --border-color: #d0d7de;
+    --bg-secondary: #f6f8fa;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", "Inter", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    font-weight: 300;
+    background-color: #fdfdfd;
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+/* =========================================
+   2. ヘッダー (Header)
+   ========================================= */
+.main-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea;
+    padding: 15px 30px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-image {
+    height: 100px;
+    width: auto;
+    display: block;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 400;
+}
+
+/* =========================================
+   3. レイアウト・共通コンテナ
+   ========================================= */
+.home-container {
+    padding-left: 120px; /* 左側の大きな空白 */
+    padding-right: 60px;
+    margin-top: 60px;
+}
+
+/* =========================================
+   4. ログイン画面専用 (login.html)
+   ========================================= */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+    padding: 20px;
+}
+
+.center-logo {
+    height: 280px;
+    width: auto;
+    object-fit: contain;
+    margin-right: 0px;
+    transform: translateX(-30px); /* ロゴ配置の微調整 */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-form input {
+    padding: 12px 15px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 300;
+    outline-color: #007aff;
+}
+
+.login-form button {
+    padding: 12px;
+    background-color: #007aff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+/* ログインフォーム下のエリア */
+.login-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* 「または」の区切り線 */
+.divider {
+    display: flex;
+    align-items: center;
+    color: #8b949e;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #eaeaea;
+}
+
+.divider::before { margin-right: 10px; }
+.divider::after { margin-left: 10px; }
+
+/* 新規登録ボタン（二次ボタン形式） */
+.btn-create-account {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; /* パディングを含めた幅計算 */
+    background-color: #ffffff;
+    color: #007aff;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-create-account:hover {
+    background-color: #f8f9fa;
+    border-color: #007aff;
+}
+
+/* ここから下ログイン用微調整用 */
+/* 登録画面用の説明文 */
+.subtitle {
+    font-size: 0.9rem;
+    color: #57606a;
+    margin-bottom: 24px;
+    margin-top: -10px;
+}
+
+/* 入力エラー時の視覚的フィードバック（オプション） */
+input.error {
+    border-color: #cf222e !important; /* GitHub風の赤 */
+    background-color: #fff8f8;
+}
+
+/* アカウント作成ボタンを少し目立たせる（任意：緑にする場合） */
+#reg-button {
+    background-color: #28a745;
+}
+#reg-button:hover {
+    background-color: #2c974b;
+}
+
+/* =========================================
+   5. ホーム画面 & カレンダー (home.html)
+   ========================================= */
+#welcome-message {
+    font-size: 2.4rem;
+    font-weight: 300;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 48px;
+}
+
+/* GitHub風タブシステム */
+.github-tabs {
+    display: flex;
+    gap: 24px;
+    margin-top: 30px;
+}
+.header-tabs {
+    display: flex;
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.tab-item {
+    padding: 8px 4px 12px 4px;
+    font-size: 0.95rem;
+    color: #1f2328;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+    text-decoration: none; /* aタグの場合 */
+}
+
+.tab-item:hover {
+    color: #636c76;
+}
+
+.tab-item.active {
+    font-weight: 600;
+}
+
+.tab-item.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--suma-accent);
+}
+
+/* お知らせバッジ */
+.tab-badge {
+    background-color: #cf222e;
+    color: white !important;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 5px;
+    display: none; /* 初期は非表示 */
+    min-width: 12px;
+    text-align: center;
+    line-height: 1;
+}
+
+.tab-underline {
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-color);
+    margin-top: -1px;
+    margin-bottom: 30px;
+}
+
+/* FullCalendar カスタマイズ */
+#calendar {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* FullCalendar内のボタン・ヘッダー修正 */
+.fc .fc-button {
+    background-color: #ffffff !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-secondary) !important;
+    font-size: 0.85rem !important;
+    transition: all 0.2s;
+}
+
+.fc .fc-button:hover {
+    background-color: var(--bg-secondary) !important;
+}
+
+.fc .fc-button-active {
+    background-color: #ebeff3 !important;
+    color: var(--text-primary) !important;
+}
+
+/* イベントの色分け */
+.fc-event {
+    border: none !important;
+    padding: 2px 4px !important;
+    border-radius: 4px !important;
+    background-color: #e1ecf4 !important; /* 他人の予定（組織） */
+    color: #1e3a8a !important;
+}
+
+/* 自分の予定（JSでこのクラスを付与） */
+.fc-event.suma-event-me {
+    background-color: var(--suma-accent) !important;
+    color: #ffffff !important;
+}
+
+/* =========================================
+   カレンダー表示切替スイッチ (Switch Style)
+   ========================================= */
+
+.calendar-controls {
+    display: flex;
+    justify-content: flex-end; /* 右寄せに配置してスッキリさせる */
+    margin-bottom: 15px;
+}
+
+.switch-container {
+    position: relative;
+    display: flex;
+    background-color: #eee; /* 薄いグレーの背景 */
+    padding: 4px;
+    border-radius: 8px;
+    width: fit-content;
+    border: 1px solid #e1e4e8;
+}
+
+.switch-btn {
+    position: relative;
+    z-index: 2; /* スライダーより上に表示 */
+    padding: 6px 16px;
+    border: none;
+    background: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #57606a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+    width: 120px; /* 幅を固定すると動きが綺麗になります */
+    justify-content: center;
+}
+
+.switch-btn.active {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+/* 背景で動く白い四角（スライダー） */
+.switch-slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
+    width: 120px; /* switch-btn の幅と同じ */
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* 「自分の予定」が選択された時のスライダー移動 */
+.switch-container:has([data-view="me"].active) .switch-slider {
+    transform: translateX(120px);
+}
+
+/* アイコンのサイズ微調整 */
+.switch-btn .icon {
+    font-size: 1rem;
+}
+
+/* ヘッダー自体の背景などは全幅にする */
+.main-header {
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #d1d5db;
+}
+
+/* 中のコンテンツを囲むコンテナ */
+.header-container {
+    display: flex;
+    flex-direction: column;
+    
+    /* ここが重要：画面が広くても、この幅以上には広がらない */
+    max-width: 1800px; 
+    margin: 0 auto; /* これで画面の中央に寄る */
+    
+    padding: 16px 40px 0 24px; /* 右側のパディングを 24px から 40px に増やして余白を確保 */
+    box-sizing: border-box;
+}
+
+/* 上段：ロゴと右側グループ */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header-right-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ログアウトボタンのデザイン微調整 */
+.logout-button {
+    padding: 4px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    /* ...他のスタイル... */
+}
+
+/* regist.html の <style> 内に追記 */
+
+/* フォーム全体を包むカード */
+.regist-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 入力ボックス（共通スタイル） */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box; /* paddingを含めた幅計算にする */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+    border-color: #0969da;
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
+    outline: none;
+}
+
+/* フォーム行（開始・終了時間など） */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* 保存ボタン */
+.btn-submit {
+    width: 100%;
+    background-color: #2da44e;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.2s;
+}
+
+.btn-submit:hover {
+    background-color: #2c974b;
+}
+
+.btn-back {
+    margin-bottom: 20px;
+    color: #57606a;
+    font-size: 14px;
+    border: 1px solid #d0d7de;
+    background: white;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #cc0000;
+}
+
+/* テーブルの「操作」列の幅を調整 */
+.schedule-table th:last-child, 
+.schedule-table td:last-child {
+    width: 80px;
+    text-align: center;
+}
+
+/* カレンダーの外枠 */
+.calendar-days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7列に分割 */
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+/* 1日分のマス目 */
+.calendar-day-cell {
+    min-height: 100px;
+    background: #fff;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 5px;
+    position: relative;
+}
+
+.calendar-day-cell.empty {
+    background: #f9f9f9;
+}
+
+.day-number {
+    font-size: 12px;
+    color: #999;
+}
+
+/* マスの中のバッジ */
+.badge,.grid-badge {
+    font-size: 12px;
+    margin-top: 1px;
+    padding: 2px 10px;
+    border-radius: 12px;
+    color: #ffffff;
+    white-space: normal;      /* 改行を許可する */
+    text-overflow: clip;      /* 三点リーダーを使わない */
+    overflow: visible;        /* はみ出しても隠さない */
+}
+
+/* マス目自体も、中身が増えたら縦に伸びるように設定 */
+.calendar-day-cell {
+    min-height: 100px;        /* 最低限の高さ */
+    height: auto;             /* 中身に合わせて伸びるようにする */
+    padding-bottom: 10px;     /* 下側に少し余白を */
+}
+
+/* 各ステータスの色 */
+.badge-ok { background-color: #28a745; }      /* 緑 */
+.badge-morning { background-color: #007bff; } /* 青 (午前のみ) */
+.badge-afternoon { background-color: #ffc107; } /* 黄 (午後のみ) */
+.badge-midnight { background-color: #292929; } /* 灰 (深夜のみ) */
+.badge-ng { background-color: #dc3545; }      /* 赤 (対応不可) */
+.badge-discus { background-color: #3cb7e7;}  /* 水色（会議） */
+.badge-default { background-color: #6c757d; } /* 灰 (不明) */
+
+/* 今日を強調するスタイル */
+.today-highlight {
+    background-color: #fff9e6 !important; /* 薄い黄色 */
+    border: 2px solid #ffcc00 !important; /* オレンジの枠線 */
+    position: relative;
+}
+/* 今日を強調するスタイル */
+.today-highlight {
+    background-color: #fff9e6 !important; /* 薄い黄色 */
+    border: 2px solid #ffcc00 !important; /* オレンジの枠線 */
+    position: relative;
+}
+
+.today-highlight::after {
+    content: 'Today';
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    font-size: 9px;
+    color: #ffaa00;
+    font-weight: bold;
+};
+
+/* 日付マスの基本スタイル（念のため） */
+.calendar-day-cell {
+    transition: background 0.2s;
+};
+.calendar-day-cell:hover {
+    background-color: #f0f7ff; /* マウスを乗せたときに少し青くする */
+}
+
+/* DB管理ソフト風UI */
+.db-admin-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f6f8fa;
+    padding: 10px 15px;
+    border: 1px solid #d0d7de;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 60%;
+}
+
+#db-search-input {
+    width: 100%;
+    padding: 6px 12px 6px 35px;
+    border: 1px solid #d0d7de;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #57606a;
+}
+
+.data-count {
+    font-size: 12px;
+    color: #57606a;
+}
+
+.db-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #d0d7de;
+    border-radius: 0 0 6px 6px;
+    background: white;
+}
+
+#db-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+#db-data-table th {
+    background: #f6f8fa;
+    color: #24292f;
+    text-align: left;
+    padding: 10px;
+    border-bottom: 2px solid #d0d7de;
+    white-space: nowrap;
+}
+
+#db-data-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #24292f;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+#db-data-table tr:hover {
+    background-color: #fcfcfc;
+}
+
+#db-data-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* =========================================
+   6. 操作ボタン & 詳細モーダル (Operations & Modal)
+   ========================================= */
+
+.ops-column {
+    width: 180px;
+    text-align: center !important;
+}
+
+.ops-cell {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-edit, .btn-delete-record, .btn-view {
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.btn-view {
+    background-color: #f6f8fa;
+    color: #24292f;
+    border-color: #d0d7de;
+}
+
+.btn-view:hover {
+    background-color: #eee;
+}
+
+.btn-edit {
+    background-color: #0969da;
+    color: white !important;
+}
+
+.btn-edit:hover {
+    background-color: #0860ca;
+}
+
+.btn-delete-record {
+    background-color: #cf222e;
+    color: white !important;
+}
+
+.btn-delete-record:hover {
+    background-color: #bb1d27;
+}
+
+/* モーダルスタイル */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; /* 初期状態は非表示 */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+}
+
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #24292f;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #57606a;
+}
+
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px 20px;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #57606a;
+    font-size: 13px;
+    background: #f6f8fa;
+    padding: 6px 10px;
+    border-radius: 4px;
+}
+
+.detail-value {
+    font-size: 14px;
+    color: #24292f;
+    padding: 6px 0;
+    word-break: break-all;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.btn-close-modal {
+    padding: 8px 16px;
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    cursor: pointer;
+}

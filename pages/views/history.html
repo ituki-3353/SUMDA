@@ -1,0 +1,74 @@
+<div class="view-page-container">
+<div class="db-admin-wrapper">
+    <div class="db-admin-header">
+        <h3>🌐 荒らしサーバー総合履歴 (AARR/OZEU)</h3>
+        <div class="db-admin-controls">
+            <div class="search-wrapper">
+                <input type="text" id="db-search-input" placeholder="サーバーID・アクションで検索..." onkeyup="executeSearch()">
+            </div>
+            <div class="data-count">Total: <span id="record-count">0</span> logs</div>
+        </div>
+    </div>
+    <div class="db-table-container">
+        <table id="db-data-table">
+            <thead id="db-table-thead">
+                <tr>
+                    <th data-key="id">Log ID</th>
+                    <th data-key="server_name">発生元サーバー</th>
+                    <th data-key="event">イベント内容</th>
+                    <th data-key="timestamp">記録日時</th>
+                </tr>
+            </thead>
+            <tbody id="db-table-body"></tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<style>
+/* 1. 親の home-container は一切いじらない（これで home.html は崩れない！） */
+
+/* 2. テーブルを包むコンテナの設定 */
+.view-page-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 3. 【最重要】右側へ突き抜けさせる設定 */
+/* home-container の padding-right: 60px を「無視」して
+   画面の右端（から少し手前）まで広げるよ！
+*/
+.db-admin-wrapper {
+    /* 親(home-container)の幅が 100% - 180px なので、
+       その外側に 60px 飛び出すように計算するよ */
+    width: 100% !important; 
+    max-width: none !important;
+    
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-top: 20px;
+    
+    /* ボックスモデルの崩れ（見切れ）を防止 */
+    box-sizing: border-box !important;
+}
+
+/* 4. テーブル自体の設定 */
+#db-data-table {
+    width: 100% !important;
+    table-layout: auto; /* カラム幅をコンテンツに合わせる */
+}
+
+/* 5. もし regist-card というクラスが残ってたら無効化しておく */
+.regist-card {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+</style>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUMDA - Access Authorization</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="assets/config.js"></script>
+    <style>
+        /* login.html の既存クラスをベースに、必要な調整のみ追加 */
+        .filter-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+            margin: 0;
+        }
+
+        .filter-wrapper {
+            width: 100%;
+            max-width: 360px; /* login.html に合わせる */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .filter-logo-area {
+            margin-bottom: 20px;
+        }
+
+        /* 要求通りロゴを大きく表示するための特別クラス */
+        .large-center-logo {
+            height: 300px; /* 320pxよりさらに大きく調整 */
+            width: auto;
+            object-fit: contain;
+            transform: translateX(-50px); /* style.css の center-logo と同様の調整 */
+        }
+
+        .filter-box {
+            background-color: transparent;
+            text-align: center;
+        }
+
+        .filter-box h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .filter-box p {
+            font-size: 0.9rem;
+            color: #57606a;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .filter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .filter-form input {
+            padding: 12px 15px;
+            border: 1px solid #d1d1d1;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 300;
+            outline-color: #007aff;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .filter-form button {
+            padding: 12px;
+            background-color: #007aff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .filter-form button:hover {
+            background-color: #0062cc;
+        }
+
+        .filter-form button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .error-msg {
+            color: #cf222e;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            min-height: 1.2em;
+            word-break: break-all;
+        }
+
+        /* ローディング表示 */
+        #loading-ui {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007aff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="filter-page">
+    <div id="loading-ui">
+        <div class="spinner"></div>
+        <p>認証情報を確認中...</p>
+    </div>
+
+    <main class="filter-wrapper" id="main-ui" style="display:none;">
+        <div class="filter-logo-area">
+            <img src="assets/logo.png" alt="SUMA Logo" class="large-center-logo">
+        </div>
+
+        <div class="filter-box">
+            <h2>アクセス認証</h2>
+            <p>
+                本システムはServer Unionメンバー専用です。<br>
+                認証のためDiscord IDを入力してください。
+            </p>
+            
+            <div class="filter-form">
+                <input type="text" id="discord-id" placeholder="Discord ID (例: 1234567890)" autocomplete="off">
+                <button id="verify-btn" onclick="verifyAccess()">認証して進む</button>
+            </div>
+            
+            <div id="error-area" class="error-msg"></div>
+        </div>
+    </main>
+
+    <script>
+        /**
+         * Discord IDの検証とリダイレクト
+         */
+        async function verifyAccess() {
+            const discordId = document.getElementById('discord-id').value.trim();
+            const errorArea = document.getElementById('error-area');
+            const verifyBtn = document.getElementById('verify-btn');
+            
+            if (!discordId) {
+                errorArea.innerText = "Discord IDを入力してください。";
+                return;
+            }
+
+            if (!/^\d+$/.test(discordId)) {
+                errorArea.innerText = "無効なDiscord ID形式です。";
+                return;
+            }
+
+            errorArea.innerText = "";
+            verifyBtn.disabled = true;
+            verifyBtn.innerText = "認証中...";
+            
+            try {
+                // APIエンドポイントの構築
+                const baseUrl = window.APP_CONFIG.API_BASE_URL;
+                const url = `${baseUrl}/discord/check?id=${discordId}`;
+                
+                const response = await fetch(url);
+                
+                // 404などのエラーハンドリング
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error(`エラー(404): エンドポイントが見つかりません。サーバー設定を確認してください。`);
+                    }
+                    const text = await response.text();
+                    throw new Error(`サーバーエラー(${response.status}): ${text.substring(0, 50)}`);
+                }
+
+                // JSONチェック
+                const contentType = response.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    const text = await response.text();
+                    console.error("Non-JSON response received:", text);
+                    throw new Error("サーバーから不正なレスポンス(HTML等)を受け取りました。");
+                }
+
+                const result = await response.json();
+
+                if (result.allowed) {
+                    localStorage.setItem('discord_user_id', discordId);
+                    window.location.href = 'home.html';
+                } else {
+                    errorArea.innerText = result.message || "アクセスが拒否されました。";
+                    verifyBtn.disabled = false;
+                    verifyBtn.innerText = "認証して進む";
+                }
+            } catch (err) {
+                console.error("Verification error:", err);
+                errorArea.innerText = err.message || "通信エラーが発生しました。";
+                verifyBtn.disabled = false;
+                verifyBtn.innerText = "認証して進む";
+            }
+        }
+
+        /**
+         * 既知のIDがある場合の自動チェック
+         */
+        async function autoCheck() {
+            const savedId = localStorage.getItem('discord_user_id');
+            if (savedId) {
+                try {
+                    const baseUrl = window.APP_CONFIG.API_BASE_URL;
+                    const url = `${baseUrl}/discord/check?id=${savedId}`;
+                    const response = await fetch(url);
+                    
+                    if (response.ok) {
+                        const contentType = response.headers.get("content-type");
+                        if (contentType && contentType.includes("application/json")) {
+                            const result = await response.json();
+                            if (result.allowed) {
+                                window.location.href = 'home.html';
+                                return;
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error("Auto check failed:", e);
+                }
+            }
+            
+            document.getElementById('loading-ui').style.display = 'none';
+            document.getElementById('main-ui').style.display = 'block';
+        }
+
+        window.onload = autoCheck;
+    </script>
+</body>
+</html>
