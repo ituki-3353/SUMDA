@@ -414,11 +414,20 @@ function switchView(viewType) {
 /**
  * カレンダーグリッド（マス目）の生成
  */
+let currentYear = new Date().getFullYear();
+let currentMonth = new Date().getMonth();
+
 async function renderCalendarGrid() {
     const gridEl = document.getElementById('calendar-days');
     if (!gridEl) return;
 
     gridEl.innerHTML = ''; 
+
+    // 月ラベルの更新
+    const labelEl = document.getElementById('calendar-month-label');
+    if (labelEl) {
+        labelEl.innerText = `${currentYear}年 ${currentMonth + 1}月`;
+    }
 
     // 今日の日付情報を取得
     const today = new Date();
@@ -426,9 +435,9 @@ async function renderCalendarGrid() {
     const todayMonth = today.getMonth();
     const todayDate = today.getDate();
 
-    // 表示対象（現在は2026年3月固定の設定）
-    const year = 2026;
-    const month = 2; // 3月
+    // 表示対象
+    const year = currentYear;
+    const month = currentMonth;
     const firstDay = new Date(year, month, 1).getDay();
     const lastDate = new Date(year, month + 1, 0).getDate();
 
@@ -485,6 +494,21 @@ async function renderCalendarGrid() {
     } catch (e) {
         console.warn('グリッドデータの読み込みに失敗したよ');
     }
+}
+
+/**
+ * 月の変更
+ */
+function changeMonth(delta) {
+    currentMonth += delta;
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    } else if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+    renderCalendarGrid();
 }
 
 /**
