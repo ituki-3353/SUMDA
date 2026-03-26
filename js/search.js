@@ -30,7 +30,7 @@ async function initDatabaseView(type) {
         console.error("Data fetch failed:", e);
         const body = document.getElementById('db-table-body');
         if (body) {
-            let errorMessage = `データの取得に失敗しました。<br>APIサーバーがダウンしているか、Tailscale VPNに接続されていない可能性があります。<br>(${e.message})`;
+            let errorMessage = `データの取得に失敗しました。<br>現在データが取得できません。<br>(${e.message})`;
             body.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:20px; color:red;">${errorMessage}</td></tr>`;
         }
     }
